@@ -28,6 +28,15 @@ public class FoodService {
         return foodRepository.findById(foodId).orElse(null);
     }
 
+    public Food findByName(String foodName) {
+        var res = foodRepository.findFoodByLabel(foodName);
+        if (!res.isEmpty())
+        {
+            return res.get(0);
+        }
+        return null;
+    }
+
     public void deleteById(int foodId) {
         try {
             foodRepository.deleteById(foodId);

@@ -23,20 +23,19 @@ public class Food {
     @OneToMany(mappedBy = "reviewId")
     private Set<Review> reviews;
 
-    @ElementCollection(targetClass = Category.class)
-    @Enumerated(EnumType.STRING)
-    private List<Category> categories;
+
+    private String type;
     // Getters and setters
     public Food() {
     }
 
-    public Food(String name, int rating, int nRating, int recentRating, int nRecentRating, List<Category> categories) {
+    public Food(String name, int rating, int nRating, int recentRating, int nRecentRating, String type) {
         this.name = name;
         this.rating = rating;
         this.nRating = nRating;
         this.recentRating = recentRating;
         this.nRecentRating = nRecentRating;
-        this.categories = categories;
+        this.type = type;
     }
 
     public int getId()
@@ -109,13 +108,23 @@ public class Food {
         this.users = users;
     }
 
-    public List<Category> getCategories()
+    public Set<Review> getReviews()
     {
-        return categories;
+        return reviews;
     }
 
-    public void setCategories(List<Category> categories)
+    public void setReviews(Set<Review> reviews)
     {
-        this.categories = categories;
+        this.reviews = reviews;
+    }
+
+    public String getType()
+    {
+        return type;
+    }
+
+    public void setType(String type)
+    {
+        this.type = type;
     }
 }
