@@ -2,6 +2,7 @@ package com.bon.apetitum.demo.controller;
 
 import com.bon.apetitum.demo.FoodAPIs;
 import com.bon.apetitum.demo.FoodData;
+import com.bon.apetitum.demo.entity.Food;
 import com.bon.apetitum.demo.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,9 @@ import java.util.Locale;
 @RequestMapping("/actions")
 public class FoodController {
 
+    @Autowired
+    private FoodService foodService;
+
     @GetMapping("/menu-today/{menser}")
     public String getMenu(@PathVariable String menser, Model model) throws IOException {
         LocalDate currentDate = LocalDate.now(); // Get the default week fields based on the locale
@@ -34,6 +38,18 @@ public class FoodController {
         var response = FoodAPIs.getMenu(test);
 
         var foodData = FoodData.mapToFoodData(response.getDays()[0].getDishes());
+        //check if given food is in db, if yes,load to ratings, if not, create new
+        for (int i = 0; i < foodData.length; i++)
+        {
+            Food food = foodService.findByName(foodData[i].getName());
+            if (food != null)
+            {
+                foodData[i].setRating(food.getRating());
+                foodData[i].setRecentRating(food.getRecentRating());
+            }else {
+                foodService.save(new Food(foodData[i].getName(), 0, 0, 0, 0, foodData[i].getDish_type()));
+            }
+        }
         model.addAttribute("rows", foodData);
         //return new ResponseEntity<Iterable<FoodData>>(List.of(foodData), HttpStatus.OK);
         return "fragments/core :: table";
