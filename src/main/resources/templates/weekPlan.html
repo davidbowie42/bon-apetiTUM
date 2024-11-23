@@ -13,7 +13,7 @@
     <div class="px-6 py-8">
         <div class="max-w-4xl mx-auto">
             <div class="d-flex justify-content-between">
-                <h1 class="text-4xl font-bold text-black mb-4">Today at Mensa Garching</h1>
+                <h1 class="text-4xl font-bold text-black mb-4">Tomorrow at Mensa Garching</h1>
                 <!-- Request the /refresh endpoint with a GET -->
                 <!--
                                 <button
@@ -77,5 +77,63 @@
 
         </div>
     </div>
+    <!--woof tries somethin -->
+    <div class="px-6 py-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="d-flex justify-content-between">
+                <h1 class="text-4xl font-bold text-black mb-4">Sometime at Mensa Garching</h1>
+            </div>
+            <table class="min-w-full divide-y divide-gray-200 overflow-x-auto rounded-lg"
+                   style="table-layout: fixed"
+            >
+                <thead class="bg-gray-50">
+                <tr class="odd:bg-white even:bg-slate-50">
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        ID
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Title
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Role
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Email
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                    </th>
+                </tr>
+                </thead>
+                <tbody id="main_body2" class="bg-white divide-y divide-gray-200">
+                <tr th:id="'id_' + ${row.id}" th:each="row : ${rows}">
+
+                    <td
+                            class="px-6 py-4 whitespace-nowrap"
+                            th:text="${row.id}"></td>
+                    <td
+                            class="px-6 py-4 whitespace-nowrap"
+                            th:text="${row.name}"></td>
+                    <td
+                            class="px-6 py-4 whitespace-nowrap"
+                            th:text="${row.desc}"></td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
 </main>
 </body>

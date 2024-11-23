@@ -116,6 +116,34 @@ public class mainController {
         // 200
         System.out.println("Delete");
     }
+    @GetMapping("/aboutUs")
+    String aboutUs(@ModelAttribute AddNewDto formData, Model model) {
+        /*
+         * I copy pasted this and use it for the sidebar -woof
+         */
+        AddNewDto returnObject = formData;
+        model.addAttribute("item", returnObject);
+        return "aboutUs";
+    }
+    @GetMapping("/weekPlan")
+    String weekPlan(@ModelAttribute AddNewDto formData, Model model) {
+        /*
+         * I copy pasted this and use it for the sidebar -woof
+         */
+        AddNewDto returnObject = formData;
+        model.addAttribute("item", returnObject);
+        return "weekPlan";
+    }
+    @GetMapping("/leaderboard")
+    String leaderboard(@ModelAttribute AddNewDto formData, Model model) {
+        /*
+         * I copy pasted this and use it for the sidebar -woof
+         */
+        AddNewDto returnObject = formData;
+        model.addAttribute("item", returnObject);
+        return "leaderboard";
+    }
+
 
     @GetMapping("/refresh")
     String refreshTable(Model model) {
