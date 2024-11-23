@@ -1,5 +1,7 @@
 package com.bon.apetitum.demo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 @Controller
 @RequestMapping(path = "/")
@@ -56,13 +62,13 @@ public class mainController {
         // I am just checking a hard coded value, you should have other methods
         if (!authCookie.equals("htmxBlog"))
             return "login";
-        // Create the objects to be rendered on the template
-        FoodItem[] foodItems = {
-                new FoodItem(1, "Frühlingsrolle", "Yum yum", 10),
-                new FoodItem(2, "Studitopf", "Lecker", 5),
+        // Create the objects to be rendered on the template //TODO call the API
+        Dish[] dishes = {
+                //   new FoodItem(1, "Frühlingsrolle", "Yum yum", 10),
+                //  new FoodItem(2, "Studitopf", "Lecker", 5),
         };
         // Inject the object to the page with the rows variable
-        model.addAttribute("rows", foodItems);
+        model.addAttribute("rows", dishes);
         // Return the rendered page
         return "dashboard";
     }
@@ -103,7 +109,8 @@ public class mainController {
     }
 
     @DeleteMapping("/delete")
-    @ResponseBody // I used this decorater to tell spring that I am not returning an HTML template
+    @ResponseBody
+        // I used this decorater to tell spring that I am not returning an HTML template
     void deleteItem(@RequestParam String id) {
         // I return nothing when delete is being requested, it auto responds with status
         // 200
@@ -112,13 +119,37 @@ public class mainController {
 
     @GetMapping("/refresh")
     String refreshTable(Model model) {
+        Response response;
         // Here I just return all the values, you will probablt fetch this from the
         // database
-        FoodItem[] foodItems = {
-                new FoodItem(1, "Frühlingsrolle", "Yum yum", 10),
-                new FoodItem(2, "Studitopf", "Lecker", 5),
-        };
-        model.addAttribute("rows", foodItems);
+        /*Dish[] dishes = {
+            //    new FoodItem(1, "Frühlingsrolle", "Yum yum", 10),
+             //   new FoodItem(2, "Studitopf", "Lecker", 5),
+        };*/
+        // week year menser
+        LocalDate currentDate = LocalDate.now(); // Get the default week fields based on the locale
+        WeekFields weekFields = WeekFields.of(Locale.getDefault()); // Extract the week of the year and the year
+        int weekOfYear = currentDate.get(weekFields.weekOfWeekBasedYear());
+        System.out.println(weekOfYear);
+        int year = currentDate.get(weekFields.weekBasedYear());
+        System.out.println(year);
+
+
+        //TODO give user the option to choose a menser
+        String menser = "mensa-garching";
+        try {
+            //response = FoodAPIs.getMenuDirectly(weekOfYear, year, menser);
+            String test=FoodAPIs.getWeeklyFoodFromAPI(weekOfYear,year,menser);
+            System.out.println(test);
+            response=FoodAPIs.getMenu(test);
+
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+        FoodDay[] foodDays = response.getDays();
+        //scheinbar wird eh nur der aktuellste Tag dieser Woche im json angezeigt?
+        Dish[] dishes = foodDays[0].getDishes();
+        model.addAttribute("rows", dishes);
         return "fragments/core :: table";
     }
 
