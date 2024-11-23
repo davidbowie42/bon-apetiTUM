@@ -2,7 +2,6 @@ package com.bon.apetitum.demo.controller;
 
 import com.bon.apetitum.demo.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -120,7 +119,7 @@ public class mainController {
 
     @GetMapping("/refresh")
     String refreshTable(Model model) {
-        Response response;
+        FoodApiResponse response;
         // Here I just return all the values, you will probablt fetch this from the
         // database
         /*Dish[] dishes = {

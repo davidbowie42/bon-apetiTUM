@@ -4,8 +4,8 @@ import com.bon.apetitum.demo.entity.Food;
 import com.bon.apetitum.demo.entity.MensaUser;
 import com.bon.apetitum.demo.entity.Review;
 import com.bon.apetitum.demo.service.FoodService;
+import com.bon.apetitum.demo.service.MensaUserService;
 import com.bon.apetitum.demo.service.ReviewService;
-import com.bon.apetitum.demo.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class ReviewController {
     private ReviewService reviewService;
 
     @Autowired
-    private UserService userService;
+    private MensaUserService userService;
 
     @Autowired
     private FoodService foodService;
