@@ -36,39 +36,45 @@
 <!-- This the entire table fragment, returned when /refersh is called -->
 <table
         th:fragment="table"
-        class="table table-striped"
+        class="min-w-full divide-y divide-gray-200 overflow-x-auto"
         style="table-layout: fixed"
 >
-    <thead>
-    <td>Id</td>
-    <td>Name</td>
-    <td>Description</td>
-    <td>Action</td>
-    </thead>
-    <tr th:each="row : ${rows}">
-        <td th:text="${row.id}"></td>
-        <td th:text="${row.name}"></td>
-        <td th:text="${row.desc}"></td>
-        <td>
-            <button
-                    class="btn btn-danger"
-                    th:hx-delete="'/delete?id=' + ${row.id}"
-                    th:hx-target="'#id_' + ${row.id}"
-            >
-                Delete
-            </button>
-            <button
-                    class="btn btn-primary"
-                    data-bs-toggle="modal"
-                    data-bs-target="#editModal"
-                    th:hx-get="'/edit-form?id=' + ${row.id} +'&name='+ ${row.name} +'&desc='+ ${row.desc}"
-                    hx-target="#edit-dialog-body"
-                    hx-trigger="click"
-            >
-                Edit
-            </button>
-        </td>
+    <thead class="bg-gray-50">
+    <tr>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            ID
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Title
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Status
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Role
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Email
+        </th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Actions
+        </th>
     </tr>
+    </thead>
+
+    <tbody id="main_body" class="bg-white divide-y divide-gray-200">
+    <tr th:id="'id_' + ${row.id}" th:each="row : ${rows}">
+        <td
+                class="px-6 py-4 whitespace-nowrap"
+                th:text="${row.id}"></td>
+        <td
+                class="px-6 py-4 whitespace-nowrap"
+                th:text="${row.name}"></td>
+        <td
+                class="px-6 py-4 whitespace-nowrap"
+                th:text="${row.desc}"></td>
+    </tr>
+    </tbody>
 </table>
 
 <!-- This is the edit form, returned when request /edit-form, rendered in the modals -->
@@ -79,7 +85,7 @@
         hx-swap="outerHTML"
         class="d-flex flex-column"
 >
-    <input type="text" name="id" placeholder="Id" class="mb-2" th:value="${id}" />
+    <input type="text" name="id" placeholder="Id" class="mb-2" th:value="${id}"/>
     <input
             type="text"
             name="name"
