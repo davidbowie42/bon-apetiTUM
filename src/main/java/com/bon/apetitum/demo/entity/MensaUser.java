@@ -24,6 +24,9 @@ public class MensaUser {
     @OneToMany(mappedBy = "reviewId")
     private Set<Review> reviews;
 
+    //how many good reviews did you write
+    private int reviewPoints=0;
+
     // Getters and setters
     public MensaUser() {
     }

@@ -1,4 +1,4 @@
-package com.bon.apetitum.demo;
+package com.bon.apetitum.demo.controller;
 
 import com.bon.apetitum.demo.entity.MensaUser;
 import com.bon.apetitum.demo.service.MensaUserService;
@@ -19,24 +19,24 @@ public class MensaUserController {
         return new ResponseEntity<Iterable<MensaUser>>(mensaUserService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/MensaUsers/{id}")
+    @GetMapping("/mensaUsers/{id}")
     public ResponseEntity<?> findOne(@PathVariable int id) {
         return new ResponseEntity<MensaUser>(mensaUserService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/MensaUsers")
+    @PostMapping("/mensaUsers")
     public ResponseEntity<?> newMensaUser(@Valid @RequestBody MensaUser newMensaUser) {
         return new ResponseEntity<MensaUser>(mensaUserService.save(newMensaUser), HttpStatus.CREATED);
     }
 
-    @PutMapping("/MensaUsers/{id}")
+    @PutMapping("/mensaUsers/{id}")
     public ResponseEntity<?> replaceMensaUser(@PathVariable int id, @Valid @RequestBody MensaUser newMensaUser) {
         newMensaUser.setId(id);
         mensaUserService.save(newMensaUser);
         return new ResponseEntity<String>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping("/MensaUsers/{id}")
+    @DeleteMapping("/mensaUsers/{id}")
     public ResponseEntity<?> deleteMensaUser(@PathVariable int id) {
         mensaUserService.deleteById(id);
         return new ResponseEntity<String>(HttpStatus.OK);
