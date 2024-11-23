@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer>{
-    @Query("SELECT r FROM Review r, Food f WHERE r.food = f.id AND f.id = ?1")
+    @Query("SELECT r FROM Review r, Food f WHERE r.food.id = f.id AND f.id = ?1")
     public List<Review> findReviewsForFoodId(int foodId);
 }

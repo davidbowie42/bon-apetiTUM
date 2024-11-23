@@ -1,14 +1,12 @@
 package com.bon.apetitum.demo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-public class Response {
+public class FoodApiResponse {
     private int number;
     private int year;
     private FoodDay[] days;
     private String version;
 
-    public Response(int number, int year, FoodDay[] days, String version) {
+    public FoodApiResponse(int number, int year, FoodDay[] days, String version) {
         this.number = number;
         this.year = year;
         this.days = days;
@@ -47,6 +45,6 @@ public class Response {
         this.days = days;
     }
 
-    public Response() {
+    public FoodApiResponse() {
     }
 }
