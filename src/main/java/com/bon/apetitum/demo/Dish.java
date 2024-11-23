@@ -1,12 +1,8 @@
 package com.bon.apetitum.demo;
 import jakarta.persistence.*;
 
-//@Entity
-//@Table(name = "Food")
 public class Dish {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
 
     public String name;

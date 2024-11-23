@@ -1,5 +1,6 @@
-package com.bon.apetitum.demo;
+package com.bon.apetitum.demo.controller;
 
+import com.bon.apetitum.demo.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import org.springframework.stereotype.Controller;
@@ -139,7 +140,7 @@ public class mainController {
         String menser = "mensa-garching";
         try {
             //response = FoodAPIs.getMenuDirectly(weekOfYear, year, menser);
-            String test=FoodAPIs.getWeeklyFoodFromAPI(weekOfYear,year,menser);
+            String test= FoodAPIs.getWeeklyFoodFromAPI(weekOfYear,year,menser);
             System.out.println(test);
             response=FoodAPIs.getMenu(test);
 
