@@ -35,4 +35,8 @@ public class ReviewService {
         }
     }
 
+    public Iterable<Review> findReviewsForFoodId(int foodId)
+    {
+        return reviewRepository.findReviewsForFoodId(foodId);
+    }
 }

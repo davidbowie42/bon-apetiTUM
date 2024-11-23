@@ -64,4 +64,33 @@ public class Review {
         return reviewText;
     }
 
+    public void setReviewId(int reviewId)
+    {
+        this.reviewId = reviewId;
+    }
+
+    public void setMensaUser(MensaUser mensaUser)
+    {
+        this.mensaUser = mensaUser;
+    }
+
+    public void setFood(Food food)
+    {
+        this.food = food;
+    }
+
+    public void setRating(int rating)
+    {
+        this.rating = rating;
+    }
+
+    public void setDate(Date date)
+    {
+        this.date = date;
+    }
+
+    public void setReviewText(String reviewText)
+    {
+        this.reviewText = reviewText;
+    }
 }
