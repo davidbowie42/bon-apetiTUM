@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head ::head}"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments/head ::head}">
+    <title>Bon AppétiTUM</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="icon" href="./images/favicon.ico">
+</head>
 <body class="loginbody">
 <div class="m-auto form-cont">
-    <h1>Login</h1>
+    <h1>Login to BonAppétiTUM</h1>
     <!-- Send form data to /login endpoint with POST -->
     <form action="/login" method="post" class="loginform">
+        <label for="user">
+            Username:
+        </label>
         <input
                 type="text"
                 name="username"
-                id="username"
-                placeholder="Username"
-                class="mb-2"
+                id="user"
+                placeholder="MensaEnjoyer"
+                class="mb-2" required
         />
+        <label for="pass">
+            Password:
+        </label>
         <input
                 type="password"
                 name="password"
                 id="pass"
-                placeholder="Password"
-                class="mb-2"
+                placeholder="12345"
+                class="mb-2" required
         />
         <button class="btn btn-primary" type="submit">Login</button>
     </form>
+    <p>Don't have an account yet?
+        <a href="#" style="text-decoration: none;">
+            Create an account
+        </a>
+    </p>
 </div>
 </body>
 </html>

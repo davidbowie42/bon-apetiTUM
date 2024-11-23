@@ -112,7 +112,7 @@ public class mainController {
 
     @GetMapping("/refresh")
     String refreshTable(Model model) {
-        // Here I just return all the values, you will probablt fetch this from the
+        // Here I just return all the values, you will probably fetch this from the
         // database
         FoodItem[] foodItems = {
                 new FoodItem(1, "Frühlingsrolle", "Yum yum", 10),
