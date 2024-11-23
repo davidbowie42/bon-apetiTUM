@@ -10,8 +10,8 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reviewId;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private User author;
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    private MensaUser mensaUser;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Food food;
     @Positive
     private int rating;
@@ -20,9 +20,9 @@ public class Review {
 
     // Getters and setters
 
-    public Review(User author, Food food, int rating, Date date, String reviewText)
+    public Review(MensaUser author, Food food, int rating, Date date, String reviewText)
     {
-        this.author = author;
+        this.mensaUser = author;
         this.food = food;
         this.rating = rating;
         this.date = date;
@@ -39,9 +39,9 @@ public class Review {
         return reviewId;
     }
 
-    public User getAuthor()
+    public MensaUser getMensaUser()
     {
-        return author;
+        return mensaUser;
     }
 
     public Food getFood()

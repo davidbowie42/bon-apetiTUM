@@ -1,6 +1,6 @@
 package com.bon.apetitum.demo.service;
 
-import com.bon.apetitum.demo.entity.User;
+import com.bon.apetitum.demo.entity.MensaUser;
 import com.bon.apetitum.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,16 +12,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User save(User newUser) {
+    public MensaUser save(MensaUser newUser) {
 
         return userRepository.save(newUser);
     }
 
-    public Iterable<User> findAll() {
+    public Iterable<MensaUser> findAll() {
         return userRepository.findAll();
     }
 
-    public User findById(int userId) {
+    public MensaUser findById(int userId) {
         return userRepository.findById(userId).orElse(null);
     }
 

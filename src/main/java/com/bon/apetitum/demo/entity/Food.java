@@ -1,7 +1,6 @@
 package com.bon.apetitum.demo.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Positive;
 
 import java.util.List;
 import java.util.Set;
@@ -19,7 +18,10 @@ public class Food {
     private int nRecentRating;
 
     @ManyToMany(mappedBy = "favoriteFoods")
-    private Set<User> users;
+    private Set<MensaUser> users;
+
+    @OneToMany(mappedBy = "reviewId")
+    private Set<Review> reviews;
 
     @ElementCollection(targetClass = Category.class)
     @Enumerated(EnumType.STRING)
@@ -97,12 +99,12 @@ public class Food {
         this.nRecentRating = nRecentRating;
     }
 
-    public Set<User> getUsers()
+    public Set<MensaUser> getUsers()
     {
         return users;
     }
 
-    public void setUsers(Set<User> users)
+    public void setUsers(Set<MensaUser> users)
     {
         this.users = users;
     }

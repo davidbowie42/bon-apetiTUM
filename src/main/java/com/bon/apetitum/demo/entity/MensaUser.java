@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 
 
 @Entity
-public class User{
+public class MensaUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,18 +19,15 @@ public class User{
     @Email
     private String email;
 
-    @ManyToMany
-    @JoinTable(
-            name = "favorites",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "food_id")
-    )
+    @ManyToMany()
     private Set<Food> favoriteFoods;
+    @OneToMany(mappedBy = "reviewId")
+    private Set<Review> reviews;
 
     // Getters and setters
-    public User() {
+    public MensaUser() {
     }
-    public User(String name, String password, String email, Set<Food> favoriteFoods) {
+    public MensaUser(String name, String password, String email, Set<Food> favoriteFoods) {
         this.name = name;
         this.password = password;
         this.email = email;
