@@ -13,8 +13,8 @@ public class FoodData {
 
     public String dish_type;
 
-    public int rating;
-    public int recentRating;
+    public String rating;
+    public String recentRating;
 
     public FoodData(String name, String dish_type, Price prices, String[] labels) {
         this.name = name;
@@ -93,22 +93,22 @@ public class FoodData {
         this.id = id;
     }
 
-    public int getRating()
+    public String getRating()
     {
         return rating;
     }
 
-    public void setRating(int rating)
+    public void setRating(String rating)
     {
         this.rating = rating;
     }
 
-    public int getRecentRating()
+    public String getRecentRating()
     {
         return recentRating;
     }
 
-    public void setRecentRating(int recentRating)
+    public void setRecentRating(String recentRating)
     {
         this.recentRating = recentRating;
     }

@@ -33,7 +33,7 @@ public class mainController {
     @GetMapping()
     String landing(@CookieValue(value = "MyAuth", defaultValue = "null") String authCookie,
                    HttpServletResponse response, Model model) {
-        if (authCookie.equals("htmxBlog")) {
+        if (authCookie.equals("1")) {
             // Redirect
             response.setHeader("Location", "/dashboard");
             response.setStatus(302);
@@ -47,7 +47,7 @@ public class mainController {
         // Validate password, check user and all that jazz here,
         // ...
         // Then set a cookie for the client
-        Cookie cookie = new Cookie("MyAuth", "htmxBlog"); // Hard coded value, yours should be dynamic
+        Cookie cookie = new Cookie("MyAuth", "1"); // Hard coded value, yours should be dynamic
         response.addCookie(cookie);
         // Then redirect to the dashboard
         response.setHeader("Location", "/dashboard");
@@ -60,7 +60,7 @@ public class mainController {
             return "login";
         // Note: Do proper cookie verfication here.
         // I am just checking a hard coded value, you should have other methods
-        if (!authCookie.equals("htmxBlog"))
+        if (!authCookie.equals("1"))
             return "login";
         // Create the objects to be rendered on the template //TODO call the API
         Dish[] dishes = {
