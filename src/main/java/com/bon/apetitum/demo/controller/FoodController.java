@@ -44,8 +44,8 @@ public class FoodController {
             Food food = foodService.findByName(foodData[i].getName());
             if (food != null)
             {
-                foodData[i].setRating(food.getRating());
-                foodData[i].setRecentRating(food.getRecentRating());
+                foodData[i].setRating(String.valueOf(food.getRating() / 20.0) + "/5 ⭐");
+                foodData[i].setRecentRating(String.valueOf(food.getRecentRating() / 20.0) + "/5 ⭐");
             }else {
                 foodService.save(new Food(foodData[i].getName(), 0, 0, 0, 0, foodData[i].getDish_type()));
             }

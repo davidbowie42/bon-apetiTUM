@@ -28,7 +28,7 @@ public class ReviewController {
     @Autowired
     private FoodService foodService;
 
-    @PostMapping("/newReview/{foodId}/{rating}/{comment}")
+    @GetMapping("/newReview/{foodId}/{rating}/{comment}")
     public ResponseEntity<?> newReview(@PathVariable int foodId, @PathVariable int rating, @PathVariable String comment, @CookieValue(value = "MyAuth", defaultValue = "null") String authCookie) {
         if (authCookie.equals("null")) {
             return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED);

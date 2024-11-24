@@ -46,20 +46,30 @@
         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Type
         </th>
-<!--
+
         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Status
+            Overall Rating
+        </th>
+
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Recent Rating
         </th>
         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Role
         </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Email
-        </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Actions
-        </th>
--->
+        <!--
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Role
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                </th>
+        -->
     </tr>
     </thead>
 
@@ -75,13 +85,45 @@
                 th:text="${row.dish_type}">
 
         </td>
-<!--
         <td
                 class="px-6 py-4 whitespace-nowrap"
-                th:text="${row.desc}"></td>
--->
+                th:text="${row.rating}">
+
+        </td>
+        <td
+                class="px-6 py-4 whitespace-nowrap"
+                th:text="${row.recentRating}">
+
+        </td>
+        <td
+                class="px-6 py-4 whitespace-nowrap">
+            <button
+                    hx-get="/modal"
+                    hx-target="#modals-here"
+                    hx-trigger="click"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modals-here"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Review
+            </button>
+
+        </td>
+        <!--
+                <td
+                        class="px-6 py-4 whitespace-nowrap"
+                        th:text="${row.desc}"></td>
+        -->
     </tr>
     </tbody>
+
+    <div id="modals-here"
+         class="modal modal-blur fade"
+         style="display: none"
+         aria-hidden="false"
+         tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
 </table>
 
 <!-- This is the edit form, returned when request /edit-form, rendered in the modals -->
