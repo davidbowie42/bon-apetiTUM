@@ -181,6 +181,11 @@ public class mainController {
         return "fragments/core :: table";
     }
 
+    @GetMapping("/modal")
+    String getModal(Model model) {
+        return "fragments/modal :: modal";
+    }
+
     @PostMapping("/logout")
     @ResponseBody
     void logOut(HttpServletResponse response) {
